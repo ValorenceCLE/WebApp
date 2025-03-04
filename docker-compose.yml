@@ -1,0 +1,24 @@
+services:
+  Backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile.backend
+    container_name: Backend
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Backend/secrets/settings.env
+    volumes:
+      - ./Backend:/app
+
+  Frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile.frontend
+    container_name: Frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - Backend
