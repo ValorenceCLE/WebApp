@@ -1,9 +1,9 @@
 services:
-  Backend:
+  backend:
     build:
       context: ./Backend
       dockerfile: Dockerfile.backend
-    container_name: Backend
+    container_name: backend
     restart: always
     ports:
       - "8000:8000"
@@ -12,13 +12,13 @@ services:
     volumes:
       - ./Backend:/app
 
-  Frontend:
+  frontend:
     build:
       context: ./Frontend
       dockerfile: Dockerfile.frontend
-    container_name: Frontend
+    container_name: frontend
     restart: always
     ports:
       - "80:80"
     depends_on:
-      - Backend
+      - backend
