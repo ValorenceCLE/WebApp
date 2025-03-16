@@ -11,6 +11,7 @@ services:
       - ./Backend/secrets/settings.env
     volumes:
       - ./Backend:/app
+    privileged: true # Required for GPIO control
 
   frontend:
     build:
@@ -22,3 +23,5 @@ services:
       - "80:80"
     depends_on:
       - backend
+
+
